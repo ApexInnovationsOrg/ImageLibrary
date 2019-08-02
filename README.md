@@ -1,2 +1,2 @@
 # ImageLibrary
-A easy front end interface for assets
+An easy front end interface for assets
