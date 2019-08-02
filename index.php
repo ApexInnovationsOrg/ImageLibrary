@@ -311,7 +311,7 @@
 		var uniqueHandle = imageIDUnique(location.split("/"));
 		
 		//Get source location
-		var source = 'Library/' + location + '/' + filename;
+		var source = 'SortedAssets/' + location + '/' + filename;
 		var imgType = newID[newID.length - 1].toLowerCase();
 		
 		if(newID[newID.length - 1].toLowerCase() == "ai"){

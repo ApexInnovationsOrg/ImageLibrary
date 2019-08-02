@@ -29,10 +29,10 @@ class ImageController
 	{
 		switch($this->folder){
 			case 'All':
-				$this->dirLocation = dirname(realpath(__FILE__)).'/Library/';
+				$this->dirLocation = dirname(realpath(__FILE__)).'/SortedAssets/';
 				break;
 			default:
-				$this->dirLocation = dirname(realpath(__FILE__)).'/Library/' . $this->folder;
+				$this->dirLocation = dirname(realpath(__FILE__)).'/SortedAssets/' . $this->folder;
 				break;
 		}
 
