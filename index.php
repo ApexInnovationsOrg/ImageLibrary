@@ -4,28 +4,69 @@
 
 	<style>
 		body {
+			margin: 0;
+		}
+		
+		#contentArea {
+			width: 100%;
+			position: absolute;
+			background-color:rgba(255,0,0,.75);
+			min-height:800px;
+			padding-top:3em;
+		}
+		
+		#display {		
+			width:1260px;
+			margin: 0 auto; 
+			background-color:#ccc;			
+		}
+		
+		#selectionArea {
 			background-color: #ccc;
 			background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZlcnNpb249JzEuMScgd2lkdGg9JzQwMCcgaGVpZ2h0PSc0MDAnPgoJPGRlZnMgaWQ9J2RlZnM0Jz4KCQk8ZmlsdGVyIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0nc1JHQicgaWQ9J2ZpbHRlcjMxMTUnPgoJCQk8ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgbnVtT2N0YXZlcz0nMScgYmFzZUZyZXF1ZW5jeT0nMC45JyBpZD0nZmVUdXJidWxlbmNlMzExNycgLz4KCQkJPGZlQ29sb3JNYXRyaXggcmVzdWx0PSdyZXN1bHQ1JyB2YWx1ZXM9JzEgMCAwIDAgMCAwIDEgMCAwIDAgMCAwIDEgMCAwIDAgMCAwIDYgLTQuMzUwMDAwMDAwMDAwMDAwNSAnIGlkPSdmZUNvbG9yTWF0cml4MzExOScgLz4KCQkJPGZlQ29tcG9zaXRlIGluMj0ncmVzdWx0NScgb3BlcmF0b3I9J2luJyBpbj0nU291cmNlR3JhcGhpYycgcmVzdWx0PSdyZXN1bHQ2JyBpZD0nZmVDb21wb3NpdGUzMTIxJyAvPgoJCQk8ZmVNb3JwaG9sb2d5IGluPSdyZXN1bHQ2JyBvcGVyYXRvcj0nZGlsYXRlJyByYWRpdXM9JzE1JyByZXN1bHQ9J3Jlc3VsdDMnIGlkPSdmZU1vcnBob2xvZ3kzMTIzJyAvPgoJCTwvZmlsdGVyPgoJPC9kZWZzPgoJPHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgeD0nMCcgeT0nMCcgaWQ9J3JlY3QyOTg1JyBmaWxsPScjY2NjY2NjJy8+ICAgICAKCTxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIHg9JzAnIHk9JzAnIGlkPSdyZWN0Mjk4NScgc3R5bGU9J2ZpbGw6I2ZmZmZmZjtmaWx0ZXI6dXJsKCNmaWx0ZXIzMTE1KScgLz4KPC9zdmc+);
 			position: relative;
 			z-index: 1;
-		}
-		#display {		
-			width:1260px;
-			margin: 0 auto; 	
-		}
+			height: 350px;
+			width: 100%;
+		}	
+		
 		#selectionPanel {
-			height: 150px;
-			margin-bottom: 25px;
-		}		
+			position: relative;
+			top: 25%;
+			width: 35%;
+			margin: 0 auto;
+			background-color: rgba(123,123,123,.5);
+			padding: 4em;
+			border-radius: 0.5em;
+		}
+		
+		#searchKeywordField {
+			background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTUuNSAxNGgtLjc5bC0uMjgtLjI3QzE1LjQxIDEyLjU5IDE2IDExLjExIDE2IDkuNSAxNiA1LjkxIDEzLjA5IDMgOS41IDNTMyA1LjkxIDMgOS41IDUuOTEgMTYgOS41IDE2YzEuNjEgMCAzLjA5LS41OSA0LjIzLTEuNTdsLjI3LjI4di43OWw1IDQuOTlMMjAuNDkgMTlsLTQuOTktNXptLTYgMEM3LjAxIDE0IDUgMTEuOTkgNSA5LjVTNy4wMSA1IDkuNSA1IDE0IDcuMDEgMTQgOS41IDExLjk5IDE0IDkuNSAxNHoiPjwvcGF0aD48L3N2Zz4=");
+			background-repeat: no-repeat;
+			background-position-y: center;
+			background-position-x: right;			
+			opacity: 0.95;
+			width: 100%;
+			box-sizing: border-box;
+			padding: 10px;
+		}
+		
+		#searchKeywordField:focus {
+			width: 100%;
+			border: 3px solid #555;
+		}
+		
 		#contentPanel {
 			
 		}
+		
 		.panel {
 			background: rgba(229,106,106,.75);
 			border: 2px solid rgba(121,92,92,1);
 			border-radius: 10px;
 			padding: 10px;
 		}
+		
 		.imgPanel {
 			background: rgba(255,255,255,1);
 			border: 2px solid rgba(239,239,239,1);
@@ -36,6 +77,7 @@
 			float: left;
 			display: inline-block;
 		}
+		
 		.imgPanel > img {
 			max-width:95%;
 			max-height:95%;
@@ -43,6 +85,7 @@
 			display: block;
 			margin: auto;
 		}
+		
 		.imgPanel:hover {
 			cursor: pointer;
 			transform: scaleY(1.35) scaleX(1.35);
@@ -52,9 +95,11 @@
 			-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
 			box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
 		}
+		
 		.hide {
 			display: none !important;
 		}
+		
 		.loader {
 			border: 12px solid #f3f3f3;
 			border-top: 12px solid #787878;
@@ -64,10 +109,25 @@
 			animation: spin 2s linear infinite;
 			margin-top: 3em;
 		}
+		
 		@keyframes spin {
 			0% { transform: rotate(0deg); }
 			100% { transform: rotate(360deg); }
 		}
+		
+		.searchPosition {
+			max-height: 168px;
+			
+		}
+		.searchPosition div {
+			border-radius: 0 !important;
+			top: 0% !important;
+		}
+		
+		.startPosition {
+			
+		}
+		
 	</style>
  
 </head>
@@ -107,6 +167,15 @@
 
 					var album =  $(this).val();
 					
+					
+					if(album == "All"){
+						//Transition to start position
+						$('#selectionArea').removeClass('searchPosition');			
+						$('#selectionArea').addClass('startPosition');			
+						
+					}
+					
+					
 					$('.imgPanel').each(function(){
 
 						var folder = $(this).attr("data-folder");
@@ -125,6 +194,7 @@
 						}		
 						
 					})
+					
 					
 				});
 				
@@ -173,6 +243,10 @@
 					$('#Album').val('All');
 					$('#Album').trigger('change');				
 				}else{
+					//Transition to search position
+						$('#selectionArea').removeClass('startPosition');			
+						$('#selectionArea').addClass('searchPosition');
+					
 					$('.imgPanel').each(function(){
 						var imgPanel = $(this);
 						var folder = ($(this).attr("data-folder")).toLowerCase();
@@ -339,20 +413,30 @@
 		return retval;
 	}
 	</script>
-	
-	<div id='display' class=''>
-		<div id='selectionPanel' class='panel'>
-			<label for='Album'>Album: </label>
-			<select id='Album' class="">
-				<option value='All'>&gt;&gt; All &lt;&lt;</option>
-			</select>
-			<hr/>
-			<span id='imageTypePanel'>Image Types: </span>
-			<hr/>
-			<span id='searchFeature'>Keyword Search: <input type='text' id='searchKeywordField' placeholder='Search keywords'/></span>
+	<div style='width:100%'>	
+		<div id='selectionArea' class=''>
+			<div id='selectionPanel'>
+
+				<span id='searchFeature'><input type='text' id='searchKeywordField' placeholder='Search for Assets'/></span>
+			</div>
 		</div>
-		<div id='contentPanel' class=''>
-			
+		
+		<div id='filtersArea' style='display:none;'>
+				<label for='Album'>Album: </label>
+				<select id='Album' class="">
+					<option value='All'>&gt;&gt; All &lt;&lt;</option>
+				</select>
+				<hr/>
+				<span id='imageTypePanel'>Image Types: </span>
+				<hr/>
+		</div>
+		
+		<div id='contentArea'>
+			<div id='display' class=''>		
+				<div id='contentPanel' class=''>
+					
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
