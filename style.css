@@ -58,6 +58,7 @@ select {
 	width: 35%;
 	margin: 0 auto;
 	background-color: rgba(123,123,123,.9);
+	box-shadow: 2px 4px 8px rgba(0, 0, 0, .5);
 	padding-top: 2.5em;
 	padding-bottom: 1.5em;
 	padding-left: 3.25em;
