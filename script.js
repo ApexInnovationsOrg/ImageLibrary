@@ -182,13 +182,13 @@ function createDropdown(){
 			if(subFolder.length > 1){
 				
 				//check if top parent folder is in array, if not add it first
-				if(folderNames.indexOf(subFolder[0]) == -1){
-					folderNames.push(subFolder[0]);
-					$('#Album').append('<option value="' + subFolder[0] + '">' + subFolder[0] + '</option>');
-				}
+				// if(folderNames.indexOf(subFolder[0]) == -1){
+					// folderNames.push(subFolder[0]);
+					// $('#Album').append('<option value="' + subFolder[0] + '">' + subFolder[0] + '</option>');
+				// }
 				
-				var folderIndent = folderSelectIndent(subFolder.length);
-				$('#Album').append('<option value="' + folder + '">' + folderIndent + subFolder[subFolder.length - 1] + '</option>');
+				// var folderIndent = folderSelectIndent(subFolder.length);
+				// $('#Album').append('<option value="' + folder + '">' + folderIndent + subFolder[subFolder.length - 1] + '</option>');
 			}else{
 				$('#Album').append('<option value="' + folder + '">' + folder + '</option>');			
 			}

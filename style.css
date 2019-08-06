@@ -1,6 +1,12 @@
 body {
 	margin: 0;
 }
+input {
+	border-width: 0px;
+}
+select {
+	border-width: 0px;
+}
 
 #contentArea {
 	width: 100%;
@@ -25,6 +31,16 @@ body {
 	width: 100%;
 }	
 
+#Album {
+	width:125px;
+	float:left;	
+	margin: 0 auto;
+	display:block;
+	padding:10px;
+	height:40px;
+	border-right:1px rgba(123,123,123,.75) solid;
+}
+
 #imageTypePanel {
 	width: 95%;
 	margin: 0 auto;
@@ -38,7 +54,7 @@ body {
 
 #selectionPanel {
 	position: relative;
-	top: 5%;
+	top: 13%;
 	width: 35%;
 	margin: 0 auto;
 	background-color: rgba(123,123,123,.75);
@@ -56,11 +72,11 @@ body {
 	background-position-y: center;
 	background-position-x: right;			
 	opacity: 0.95;
-	width: 95%;
+	width: 75%;
 	box-sizing: border-box;
-	padding: 10px;
-	margin: 0 auto;
+	padding: 10px 10px 10px 15px;
 	display:block;
+	height:40px;
 }
 
 #searchKeywordField:focus {
