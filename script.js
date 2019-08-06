@@ -148,6 +148,8 @@ $(function() {
 function createImageTypes(){
 	var imageTypes = [];
 
+	$('#imageTypePanel').append('|&nbsp;&nbsp;');
+
 	$('.imgPanel').each(function(){
 		var imageType = $(this).attr("data-imgType");
 		
@@ -155,9 +157,9 @@ function createImageTypes(){
 			imageTypes.push(imageType);
 			
 			if(imageType != "ai"){
-				$('#imageTypePanel').append('<input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" checked="checked" />' + imageType + '&nbsp;&nbsp;');
+				$('#imageTypePanel').append('<input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" checked="checked" />' + imageType + '&nbsp;&nbsp;|&nbsp;&nbsp;');
 			}else{
-				$('#imageTypePanel').append('<input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" />' + imageType + '&nbsp;&nbsp;');
+				$('#imageTypePanel').append('<input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" />' + imageType + '&nbsp;&nbsp;|&nbsp;&nbsp;');
 			}
 		}
 	});
