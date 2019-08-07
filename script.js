@@ -31,15 +31,6 @@ $(function() {
 
 				var album =  $(this).val();
 				
-				
-				if(album == "All"){
-					//Transition to start position
-					$('#selectionArea').removeClass('searchPosition');			
-					$('#selectionArea').addClass('startPosition');			
-					
-				}
-				
-				
 				$('.imgPanel').each(function(){
 
 					var folder = $(this).attr("data-folder");
@@ -57,8 +48,7 @@ $(function() {
 						
 					}		
 					
-				})
-				
+				});				
 				
 			});
 			
@@ -95,6 +85,7 @@ $(function() {
 
 	//Search keyword feature handling
 	$('#searchKeywordField').keyup(function(){
+		var selectedAlbum = ($('#Album').val()).toLowerCase();
 		var searchedWords = ($(this).val()).toLowerCase();
 		searchedWords = searchedWords.split(" ");
 		
@@ -107,9 +98,6 @@ $(function() {
 				$('#Album').val('All');
 				$('#Album').trigger('change');				
 			}else{
-				//Transition to search position
-					$('#selectionArea').removeClass('startPosition');			
-					$('#selectionArea').addClass('searchPosition');
 				
 				$('.imgPanel').each(function(){
 					var imgPanel = $(this);
@@ -117,22 +105,22 @@ $(function() {
 					var title = ($(this).attr("title")).toLowerCase();					
 					var imgID = ($(this).find('img').attr('id')).toLowerCase();
 					var imgSrc = ($(this).find('img').attr('src')).toLowerCase();
-					
+					var parentFolder = ((folder.split('/'))[0]).toLowerCase();
+											
 					var searchData = [folder,title,imgID,imgSrc];
 					
 					searchData.forEach(function(value,index,array){
 						
-						if(!value.includes(searchedWord)){
+						if(!value.includes(searchedWord) || (parentFolder != selectedAlbum && selectedAlbum != 'all')){
 							imgPanel.addClass("hide");
 						}else{
 							searchedPanels.push(imgPanel);
 						}
 						
-					})					
+					})				
 					
-				});				
-			}
-			
+				});										
+			}			
 		});
 		
 		searchedPanels.forEach(function(value,index,array){
