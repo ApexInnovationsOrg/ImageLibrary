@@ -103,15 +103,14 @@ select {
 	width: 125px;
 	margin: 5px;
 	float: left;
-	display: inline-block;
+	display:flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .imgPanel > img {
 	max-width:95%;
 	max-height:95%;
-	height:auto;
-	display: block;
-	margin: auto;
 }
 
 .imgPanel:hover {

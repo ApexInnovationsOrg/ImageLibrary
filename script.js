@@ -247,7 +247,7 @@ function createImagePanel(location,filename){
 	if(newID[newID.length - 1].toLowerCase() == "ai"){
 		source = 'aiPlaceholder.png';			
 	}
-	$('#contentPanel').append('<div class="imgPanel" data-folder="' + location + '" data-imgType="' + imgType + '" title="' + filename + '"><div class="loader"></div><img class="hide" id="' + uniqueHandle + newIDSpaceRemoved + imgType + '" src="' + source +'"  /></div>');
+	$('#contentPanel').append('<div class="imgPanel" data-folder="' + location + '" data-imgType="' + imgType + '" title="' + filename + '"><div class="loader"></div><img class="hide" id="' + uniqueHandle + newIDSpaceRemoved + imgType + '" src="ImageParser.php?thumb=1&src=' + source +'"  /></div>');
 
 	//when image loads, remove loader guy and show the image by removing hide class
 	$('#' + uniqueHandle + newIDSpaceRemoved + imgType).on("load",function(){

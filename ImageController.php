@@ -1,7 +1,6 @@
 <?php
 //Class for handling image library requests
 
-
 $imgCtrl = new ImageController($_POST);
 $fileStructure = $imgCtrl->parse();
 
@@ -21,8 +20,9 @@ class ImageController
 	public function parse()
 	{
 		$this->getDirectoryLocation();
+		$directoryArray = $this->directoryArray($this->dirLocation);		
 		
-		return $this->directoryArray($this->dirLocation);		
+		return $directoryArray;
 	}
 	
 	private function getDirectoryLocation()
