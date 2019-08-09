@@ -81,11 +81,14 @@ select {
 }
 
 #searchKeywordField:focus {
-	width: 95%%;
+	width: 95%;
 }
 
-#contentPanel {
-	
+
+#popoutPanel{
+	height: 100%;
+	width: 100%;
+	z-index: 2;
 }
 
 .panel {
@@ -141,16 +144,3 @@ select {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }
-
-/* .searchPosition { */
-	/* max-height: 168px; */
-	
-/* } */
-/* .searchPosition div { */
-	/* border-radius: 0 !important; */
-	/* top: 0% !important; */
-/* } */
-
-/* .startPosition { */
-	
-/* } */
