@@ -245,7 +245,7 @@ function createImagePanel(location,filename){
 	var imgType = newID[newID.length - 1].toLowerCase();
 
 	if(newID[newID.length - 1].toLowerCase() == "ai"){
-		source = 'aiPlaceholder.png';			
+		source = 'SortedAssets/PlaceholderImages/aiPlaceholder.png';			
 	}
 	$('#contentPanel').append('<div class="imgPanel" data-folder="' + location + '" data-imgType="' + imgType + '" title="' + filename + '"><div class="loader"></div><img class="hide" id="' + uniqueHandle + newIDSpaceRemoved + imgType + '" src="ImageParser.php?thumb=1&src=' + source +'"  /></div>');
 
