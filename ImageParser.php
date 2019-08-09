@@ -7,7 +7,7 @@ $thumbnail = $imageParse->parse();
 class ImageParser
 {
 	protected $src;
-	protected $thumbnail;
+	protected $passedSource;
 	
 	public function __construct($params)
     {
@@ -19,26 +19,38 @@ class ImageParser
 	{
 		//Check if image thumbnail exists. If not, create it, save it, then pull it.
 		$src = explode("SortedAssets/",$this->src);
-		$newSrc = "Thumbnails/" . $src[1];
-		if(!file_exists($newSrc)){
-			$newThumb = new Imagick($this->src);		
-			$imgWidth = $newThumb->getImageWidth();
-			$imgHeight = $newThumb->getImageHeight();				
-			$newThumb->thumbnailImage(100,100,true);	
-			
-			$directoryStructure = dirname($newSrc);			
-			$fileName = basename($newSrc);
-			if(!file_exists($directoryStructure)){
-				mkdir($directoryStructure,0755,true);	
-			}
-			$newThumb->writeImage($newSrc);
+		$this->passedSource = "Thumbnails/" . $src[1];
+		if(!file_exists($this->passedSource)){
+			$this->createThumbnailFile();
 		}
 				
-		header('Content-type: ' . mime_content_type($newSrc));	
-		readfile($newSrc);
-		
+		header('Content-type: ' . mime_content_type($this->passedSource));	
+		readfile($this->passedSource);		
 	}	
 	
+	private function createThumbnailFile()
+	{
+		//Ceate thumbnail
+		$newThumb = new Imagick($this->src);		
+		$imgWidth = $newThumb->getImageWidth();
+		$imgHeight = $newThumb->getImageHeight();				
+		$newThumb->thumbnailImage(100,100,true);	
+		
+		$this->createDirectoryStructure();
+		
+		//Save image to filesystem
+		$newThumb->writeImage($this->passedSource);
+	}
+	
+	private function createDirectoryStructure()
+	{
+		//Create folder structure
+		$directoryStructure = dirname($this->passedSource);			
+		$fileName = basename($this->passedSource);
+		if(!file_exists($directoryStructure)){
+			mkdir($directoryStructure,0755,true);	
+		}
+	}
 	
 }
 
