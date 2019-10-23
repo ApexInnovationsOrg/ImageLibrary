@@ -47,7 +47,7 @@ class ImageParser
 		//Create folder structure
 		$directoryStructure = dirname($this->passedSource);			
 		$fileName = basename($this->passedSource);
-		if(!file_exists($directoryStructure)){
+		if(!file_exists($directoryStructure) && !is_dir($directoryStructure)){
 			mkdir($directoryStructure,0755,true);	
 		}
 	}
