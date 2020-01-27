@@ -7,15 +7,17 @@
 <body>
 	<div style='width:100%'>
 		
-		<div id='selectionArea' class=''>
-			<div id='selectionPanel'>
-				<span id='searchFeature'>
+		<div id='selectionArea'>
+			<div id='selectionPanel' class="flex-column">
+				<div id='searchFeature' class="flex">
 					<select id='Album' class="">
 						<option value='All'>All Images</option>
 					</select>
-					<input type='text' id='searchKeywordField' placeholder='Search for Assets'/></span>
-				<br/>
-				<span id='imageTypePanel'> </span>
+					<input type='text' id='searchKeywordField' placeholder='Search for Assets'/>
+				</div>
+				<div class="flex">
+					<span id='imageTypePanel'><span id='smallLoad' class="loader smallLoader"></span></span>
+				</div>
 				
 			</div>
 		</div>

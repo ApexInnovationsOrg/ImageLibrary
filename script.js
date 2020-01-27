@@ -156,23 +156,26 @@ function PopupCenter(url, title, w, h) {
 
 //Create image type selector section
 function createImageTypes(){
-	var imageTypes = [];
-
-	$('#imageTypePanel').append('|&nbsp;&nbsp;');
-
+	var imageTypes = [];	
+	
 	$('.imgPanel').each(function(){
 		var imageType = $(this).attr("data-imgType");
 		
 		if(imageTypes.indexOf(imageType) == -1){
 			imageTypes.push(imageType);
+			var selector = '';
 			
 			if(imageType != "ai"){
-				$('#imageTypePanel').append('<input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" checked="checked" />' + imageType + '&nbsp;&nbsp;|&nbsp;&nbsp;');
-			}else{
-				$('#imageTypePanel').append('<input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" />' + imageType + '&nbsp;&nbsp;|&nbsp;&nbsp;');
+				selector = 'checked="checked"';
 			}
+			
+			$('#imageTypePanel').append('<div class="cursor"><label class="cursor smPadding"><input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" ' + selector + '/>' + imageType + '</label></div>');
+			
 		}
 	});
+	
+	$('#smallLoad').remove();
+	
 }
 
 //Create dropdown menu of available folders
