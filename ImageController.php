@@ -43,7 +43,6 @@ class ImageController
    
 		$retval = array(); 
 
-
 		$dir = scandir($directory); 
 		foreach ($dir as $key => $value){
 

@@ -22,7 +22,15 @@ $(function() {
 				var folder = $(this).attr("data-folder");
 				var title = $(this).attr("title");				
 				
-				PopupCenter('SortedAssets/' + folder + '/' + title,'xtf','900','500');  
+				//Determine if file is .ai converted				
+				if(title.substring(title.length-3) == ".ai"){
+					title = title.substring(0,(title.length-3)) + ".png";						
+					PopupCenter('ConvertedAssets/' + folder + '/' + title,'xtf','900','500');  		
+				}else{					
+					PopupCenter('SortedAssets/' + folder + '/' + title,'xtf','900','500');  
+				}
+				
+				
 			});				
 			
 			//Once all files processed, lets make our selectable dropdown
@@ -165,9 +173,9 @@ function createImageTypes(){
 			imageTypes.push(imageType);
 			var selector = '';
 			
-			if(imageType != "ai"){
+			// if(imageType != "ai"){
 				selector = 'checked="checked"';
-			}
+			// }
 			
 			$('#imageTypePanel').append('<div class="cursor"><label class="cursor smPadding"><input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" ' + selector + '/>' + imageType + '</label></div>');
 			
@@ -192,17 +200,7 @@ function createDropdown(){
 			
 			//check if folder is sub folder
 			var subFolder = folder.split("/");
-			if(subFolder.length > 1){
-				
-				//check if top parent folder is in array, if not add it first
-				// if(folderNames.indexOf(subFolder[0]) == -1){
-					// folderNames.push(subFolder[0]);
-					// $('#Album').append('<option value="' + subFolder[0] + '">' + subFolder[0] + '</option>');
-				// }
-				
-				// var folderIndent = folderSelectIndent(subFolder.length);
-				// $('#Album').append('<option value="' + folder + '">' + folderIndent + subFolder[subFolder.length - 1] + '</option>');
-			}else{
+			if(subFolder.length == 0){				
 				$('#Album').append('<option value="' + folder + '">' + folder + '</option>');			
 			}
 		}
@@ -268,10 +266,7 @@ function createImagePanel(location,filename){
 	//Get source location
 	var source = 'SortedAssets/' + location + '/' + filename;
 	var imgType = newID[newID.length - 1].toLowerCase();
-
-	if(newID[newID.length - 1].toLowerCase() == "ai"){
-		source = 'SortedAssets/PlaceholderImages/aiPlaceholder.png';			
-	}
+	
 	$('#contentPanel').append('<div class="imgPanel" data-folder="' + location + '" data-imgType="' + imgType + '" title="' + filename + '"><div class="loader"></div><img class="hide" id="' + uniqueHandle + newIDSpaceRemoved + imgType + '" src="ImageParser.php?thumb=1&src=' + source +'"  /></div>');
 
 	//when image loads, remove loader guy and show the image by removing hide class
