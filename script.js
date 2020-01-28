@@ -250,7 +250,12 @@ function createImagePanel(location,filename){
 	var source = 'SortedAssets/' + location + '/' + filename;
 	var imgType = newID[newID.length - 1].toLowerCase();
 	
-	$('#contentPanel').append('<div class="imgPanel" data-folder="' + location + '" data-imgType="' + imgType + '" title="' + filename + '"><div class="loader"></div><img class="hide" id="' + uniqueHandle + newIDSpaceRemoved + imgType + '" src="ImageParser.php?thumb=1&src=' + source +'"  /></div>');
+	var imgIcon = '';
+	if(newID[1] == "ai"){
+		imgIcon = '<img class="aiIcon" src="aiPlaceholder.png" />';
+	}
+	
+	$('#contentPanel').append('<div class="imgPanel" data-folder="' + location + '" data-imgType="' + imgType + '" title="' + filename + '"><div class="loader"></div>' + imgIcon + '<img class="hide" id="' + uniqueHandle + newIDSpaceRemoved + imgType + '" src="ImageParser.php?thumb=1&src=' + source +'"  /></div>');
 
 	//when image loads, remove loader guy and show the image by removing hide class
 	$('#' + uniqueHandle + newIDSpaceRemoved + imgType).on("load",function(){

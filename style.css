@@ -129,6 +129,8 @@ select {
 	display:flex;
 	align-items: center;
 	justify-content: center;
+	position:relative;
+	z-index:10;
 }
 
 .imgPanel > img {
@@ -138,6 +140,7 @@ select {
 
 .imgPanel:hover {
 	cursor: pointer;
+	z-index:11;
 	transform: scaleY(1.35) scaleX(1.35);
 	transform-origin: top left;
 	border: 2px solid grey;
@@ -154,6 +157,15 @@ select {
 	margin-top: 1em !important;
 	height: 15px !important;
 	width: 15px !important;
+}
+
+.aiIcon {
+	width: 15%;
+	height: 15%;
+	opacity:0.69;    
+	position: absolute;
+	top: 3px;
+	left: 3px;
 }
 
 .loader {
