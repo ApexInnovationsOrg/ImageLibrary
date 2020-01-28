@@ -184,7 +184,7 @@ function createDropdown(){
 			
 			//check if folder is sub folder
 			var subFolder = folder.split("/");
-			if(subFolder.length == 0){				
+			if(subFolder.length == 1){
 				$('#Album').append('<option value="' + folder + '">' + folder + '</option>');			
 			}
 		}
