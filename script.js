@@ -13,8 +13,7 @@ $(function() {
 			//process all files
 			$.each(data, function(index,files) {
 				
-				processFiles(index,files);			
-				
+				processFiles(index,files);							
 			});
 			
 			//Clicked an image panel
@@ -24,13 +23,14 @@ $(function() {
 				
 				//Determine if file is .ai converted				
 				if(title.substring(title.length-3) == ".ai"){
-					title = title.substring(0,(title.length-3)) + ".png";						
-					PopupCenter('ConvertedAssets/' + folder + '/' + title,'xtf','900','500');  		
+					PopupCenter('SortedAssets/' + folder + '/' + title,'xtf','900','500');	
+					title = title.substring(0,(title.length-3)) + ".png";			
+					setTimeout(function(){ 
+						PopupCenter('ConvertedAssets/' + folder + '/' + title,'xtf','900','500');
+					}, 500);					 		
 				}else{					
 					PopupCenter('SortedAssets/' + folder + '/' + title,'xtf','900','500');  
-				}
-				
-				
+				}				
 			});				
 			
 			//Once all files processed, lets make our selectable dropdown
@@ -55,12 +55,9 @@ $(function() {
 							$(this).removeClass("hide");
 						}else{
 							$(this).addClass("hide");
-						}					
-						
-					}		
-					
+						}						
+					}					
 				});				
-				
 			});
 			
 			
@@ -85,10 +82,8 @@ $(function() {
 								thisPanel.addClass("hide");
 							}
 						}
-					});			
-					
-				})
-				
+					});					
+				})				
 			});
 			
 		}
@@ -136,10 +131,8 @@ $(function() {
 		
 		searchedPanels.forEach(function(value,index,array){
 			
-			value.removeClass("hide");
-			
-		});
-			
+			value.removeClass("hide");			
+		});			
 	});
 });
 
@@ -160,8 +153,6 @@ function PopupCenter(url, title, w, h) {
 	if (window.focus) newWindow.focus();
 }
 
-
-
 //Create image type selector section
 function createImageTypes(){
 	var imageTypes = [];	
@@ -171,19 +162,12 @@ function createImageTypes(){
 		
 		if(imageTypes.indexOf(imageType) == -1){
 			imageTypes.push(imageType);
-			var selector = '';
 			
-			// if(imageType != "ai"){
-				selector = 'checked="checked"';
-			// }
-			
-			$('#imageTypePanel').append('<div class="cursor"><label class="cursor smPadding"><input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" ' + selector + '/>' + imageType + '</label></div>');
-			
+			$('#imageTypePanel').append('<div class="cursor"><label class="cursor smPadding"><input class="imageTypeSelector" id="imageType-' + imageType +  '" type="checkbox" checked="checked" />' + imageType + '</label></div>');			
 		}
 	});
 	
-	$('#smallLoad').remove();
-	
+	$('#smallLoad').remove();	
 }
 
 //Create dropdown menu of available folders
@@ -205,7 +189,6 @@ function createDropdown(){
 			}
 		}
 	});
-
 }
 
 //Adding indent to the dropdown menu
