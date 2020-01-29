@@ -69,13 +69,19 @@ class ImageParser
 	private function previewSupportedFormat($src)
 	{
 		$newPreview = new Imagick($this->src);
-		$newPreview->setImageFormat("png");		
+		$newPreview->setImageFormat("png");
+			
+		//If PSD, flatter layers
+		if($this->fileFormat == ".psd"){
+			$newPreview = $newPreview->flattenImages();
+		}
 		
 		$this->createDirectoryStructure("ConvertedAssets/" . $src);
 		
-		$newSrc = str_replace($this->fileFormat, ".png", $src);
-		$newPreview->writeImage("ConvertedAssets/" . $newSrc);
-
+		$newSrc = str_replace($this->fileFormat, ".png", $src);		
+		$this->src = "ConvertedAssets/" . $newSrc;
+		
+		$newPreview->writeImage($this->src);
 	}
 	
 	private function getFileFormat($file)
