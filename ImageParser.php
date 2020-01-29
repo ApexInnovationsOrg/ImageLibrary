@@ -8,6 +8,8 @@ class ImageParser
 {
 	protected $src;
 	protected $passedSource;
+	protected $fileFormat; //.png, .gif, .jpg, .psd, .ai
+	private $supportedConversionFormats = array(".psd",".ai");
 	
 	public function __construct($params)
     {
@@ -20,13 +22,14 @@ class ImageParser
 		//Check if image thumbnail exists. If not, create it, save it, then pull it.
 		$src = explode("SortedAssets/",$this->src);
 		$this->passedSource = "Thumbnails/" . $src[1];			
-
-		if(substr($src[1],-3) == ".ai"){
-			$pngSrc = rtrim($src[1],".ai") . ".png";
+		$this->fileFormat = $this->getFileFormat($src[1]);
+		
+		if(in_array($this->fileFormat,$this->supportedConversionFormats)){
+			$pngSrc = str_replace($this->fileFormat, ".png", $src[1]);
 			$this->passedSource = "Thumbnails/" . $pngSrc;
 			
 			if(!file_exists($this->passedSource)){
-				$this->previewAI($src[1]);
+				$this->previewSupportedFormat($src[1]);
 				$this->createThumbnailFile();
 			}			
 		}else{		
@@ -63,16 +66,28 @@ class ImageParser
 		}
 	}
 	
-	private function previewAI($src)
+	private function previewSupportedFormat($src)
 	{
 		$newPreview = new Imagick($this->src);
 		$newPreview->setImageFormat("png");		
 		
 		$this->createDirectoryStructure("ConvertedAssets/" . $src);
 		
-		$newSrc = rtrim($src,".ai");
-		$newPreview->writeImage("ConvertedAssets/" . $newSrc . ".png");
+		$newSrc = str_replace($this->fileFormat, ".png", $src);
+		$newPreview->writeImage("ConvertedAssets/" . $newSrc);
 
+	}
+	
+	private function getFileFormat($file)
+	{
+		//Split file on extension
+		$fileExplode = explode("/",$file);
+		
+		$filename = $fileExplode[count($fileExplode)-1];
+		
+		$retval = explode(".",$filename);
+		
+		return "." . $retval[1];
 	}
 	
 }

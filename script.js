@@ -19,17 +19,22 @@ $(function() {
 			//Clicked an image panel
 			$('.imgPanel').click(function(){
 				var folder = $(this).attr("data-folder");
-				var title = $(this).attr("title");				
+				var title = $(this).attr("title");						
+				
+				PopupCenter('SortedAssets/' + folder + '/' + title,'xtf','900','500');  
+				
+				var downloadableFormats = [".psd",".ai"];
+				
+				var filenameSplit = title.split('.');
+				var filename = filenameSplit[0];
+				var extension = "." + filenameSplit[1];
 				
 				//Determine if file is .ai converted				
-				if(title.substring(title.length-3) == ".ai"){
-					PopupCenter('SortedAssets/' + folder + '/' + title,'xtf','900','500');	
-					title = title.substring(0,(title.length-3)) + ".png";			
+				if($.inArray(extension,downloadableFormats) != -1){
+					title = filename + ".png";			
 					setTimeout(function(){ 
 						PopupCenter('ConvertedAssets/' + folder + '/' + title,'xtf','900','500');
 					}, 500);					 		
-				}else{					
-					PopupCenter('SortedAssets/' + folder + '/' + title,'xtf','900','500');  
 				}				
 			});				
 			
@@ -250,10 +255,7 @@ function createImagePanel(location,filename){
 	var source = 'SortedAssets/' + location + '/' + filename;
 	var imgType = newID[newID.length - 1].toLowerCase();
 	
-	var imgIcon = '';
-	if(newID[1] == "ai"){
-		imgIcon = '<img class="aiIcon" src="aiPlaceholder.png" />';
-	}
+	var imgIcon = getImgIcon(newID[1]);
 	
 	$('#contentPanel').append('<div class="imgPanel" data-folder="' + location + '" data-imgType="' + imgType + '" title="' + filename + '"><div class="loader"></div>' + imgIcon + '<img class="hide" id="' + uniqueHandle + newIDSpaceRemoved + imgType + '" src="ImageParser.php?thumb=1&src=' + source +'"  /></div>');
 
@@ -262,6 +264,23 @@ function createImagePanel(location,filename){
 		$('#' + uniqueHandle + newIDSpaceRemoved + imgType).siblings('.loader').remove();
 		$('#' + uniqueHandle + newIDSpaceRemoved + imgType).removeClass("hide");
 	})
+}
+
+//Get img icon for imgPanelOverlay
+function getImgIcon(extension)
+{
+	var retval = '';
+	
+	switch(extension){
+		case 'ai':
+			retval = '<img class="fileIcon" src="Icons/aiIcon.png" />';
+			break;
+		case 'psd':
+			retval ='<img class="fileIcon" src="Icons/psdIcon.png" />';
+			break;		
+	}
+	
+	return retval;
 }
 
 //Array to object conversion for ease of use
