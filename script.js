@@ -178,19 +178,21 @@ function createImageTypes(){
 //Create dropdown menu of available folders
 function createDropdown(){
 	var folderNames = [];
+	var rootFolders = [];
 
 	$('.imgPanel').each(function(){
 		
 		var folder = $(this).attr("data-folder");
 		
-		if(folderNames.indexOf(folder) == -1){				
-			
+		if(folderNames.indexOf(folder) == -1){		
 			folderNames.push(folder);
 			
 			//check if folder is sub folder
-			var subFolder = folder.split("/");
-			if(subFolder.length == 1){
-				$('#Album').append('<option value="' + folder + '">' + folder + '</option>');			
+			var subFolder = folder.split("/");		
+			
+			if(subFolder.length == 1 || rootFolders.indexOf(subFolder[0]) == -1){
+				rootFolders.push(subFolder[0]);
+				$('#Album').append('<option value="' + subFolder[0] + '">' + subFolder[0] + '</option>');			
 			}
 		}
 	});
