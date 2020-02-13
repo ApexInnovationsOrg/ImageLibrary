@@ -114,8 +114,8 @@ $(function() {
 					var imgPanel = $(this);
 					var folder = ($(this).attr("data-folder")).toLowerCase();
 					var title = ($(this).attr("title")).toLowerCase();					
-					var imgID = ($(this).find('img').attr('id')).toLowerCase();
-					var imgSrc = ($(this).find('img').attr('src')).toLowerCase();
+					var imgID = ($(this).find('img:not(.fileIcon)').attr('id')).toLowerCase();
+					var imgSrc = ($(this).find('img:not(.fileIcon)').attr('src')).toLowerCase();
 					var parentFolder = ((folder.split('/'))[0]).toLowerCase();
 											
 					var searchData = [folder,title,imgID,imgSrc];
