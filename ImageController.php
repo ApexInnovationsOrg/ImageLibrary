@@ -11,6 +11,7 @@ class ImageController
 {
 	private $folder;
 	private $dirLocation;
+	private $badCharacters = ['(',')'];
 	
 	public function __construct($params)
     {
@@ -46,11 +47,13 @@ class ImageController
 		$dir = scandir($directory); 
 		foreach ($dir as $key => $value){
 
-			if (!in_array($value,array(".","..")) && $value != "Thumbs.db" && $value != ".DS_Store"){   
+			if (!in_array($value,array(".","..","Thumbs.db",".DS_Store"))){   
 
 				if (is_dir($directory . "/" . $value)){ 
 					$retval[$value] = $this->directoryArray($directory . "/" . $value); 
 				}else{ 
+					$value = $this->cleanFileName($value,$directory);
+
 					$retval[] = $value; 
 				} 
 
@@ -59,6 +62,29 @@ class ImageController
 
 		return $retval; 
 	} 
+
+	private function cleanFileName($fileName, $directory)
+	{
+		$cleanedName = $fileName;
+		$cleanIt = false;
+		
+		foreach($this->badCharacters as $badCharacter)
+		{
+			if (strpos($cleanedName, $badCharacter) !== false) {
+				$cleanIt = true;
+			}
+		}
+
+		if($cleanIt)
+		{
+			$cleanedName = $directory . "/" . str_replace($this->badCharacters,'',$cleanedName);			
+			$fileName = $directory . "/" . $fileName;	
+
+			rename($fileName, $cleanedName);
+		}
+
+		return $cleanedName;
+	}
 	
 }
 
