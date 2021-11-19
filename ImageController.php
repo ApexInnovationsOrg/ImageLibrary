@@ -65,6 +65,8 @@ class ImageController
 
 	private function cleanFileName($fileName, $directory)
 	{
+		$retval = $fileName;
+
 		$cleanedName = $fileName;
 		$cleanIt = false;
 		
@@ -77,13 +79,15 @@ class ImageController
 
 		if($cleanIt)
 		{
+			$retval = str_replace($this->badCharacters,'',$cleanedName);
+
 			$cleanedName = $directory . "/" . str_replace($this->badCharacters,'',$cleanedName);			
 			$fileName = $directory . "/" . $fileName;	
 
 			rename($fileName, $cleanedName);
 		}
 
-		return $cleanedName;
+		return $retval;
 	}
 	
 }
