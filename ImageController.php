@@ -46,7 +46,7 @@ class ImageController
 		$dir = scandir($directory); 
 		foreach ($dir as $key => $value){
 
-			if (!in_array($value,array(".","..")) && $value != "Thumbs.db"){   
+			if (!in_array($value,array(".","..")) && $value != "Thumbs.db" && $value != ".DS_Store"){   
 
 				if (is_dir($directory . "/" . $value)){ 
 					$retval[$value] = $this->directoryArray($directory . "/" . $value); 
